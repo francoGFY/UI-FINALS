@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbal Medicine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #d7e69e;
+            color: #1f2b22;
+        }
+        .page {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 280px;
+            background: #212d24;
+            color: white;
+            padding: 30px 20px;
+        }
+        .logo-box {
+            width: 100%;
+            height: 140px;
+            background: #1d2d23;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-box img {
+            max-width: 120px;
+            max-height: 120px;
+            display: block;
+        }
+        .menu-item {
+            display: block;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #d9dcc6;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .menu-item.active,
+        .menu-item:hover {
+            background: #79b83f;
+            color: white;
+        }
+        .main {
+            flex: 1;
+            padding: 32px 36px;
+        }
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .top-row .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            color: #7ea86e;
+        }
+        .top-row .nav-links .active {
+            color: #30432b;
+            border-bottom: 3px solid #30432b;
+            padding-bottom: 4px;
+        }
+        .hero-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .hero-title h1 {
+            margin: 0;
+            font-size: 64px;
+            letter-spacing: -1px;
+            color: #242c22;
+        }
+        .hero-title .hero-green {
+            color: #5b8f27;
+            font-size: 64px;
+            font-weight: bold;
+        }
+        .hero-title .hero-right {
+            font-size: 52px;
+            color: #2f4325;
+            font-weight: bold;
+        }
+        .hero-row {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .hero-left,
+        .hero-right {
+            background: #e8f0b8;
+            border-radius: 32px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        .hero-left {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .photo-frame {
+            background: #1b231f;
+            border-radius: 28px;
+            padding: 18px;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .photo-frame img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+        .caption {
+            margin-top: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #3a4b2f;
+            text-align: center;
+            max-width: 420px;
+        }
+        .hero-right {
+            flex: 0.9;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .info-card {
+            background: #f8f9dc;
+            border-radius: 22px;
+            padding: 22px 24px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .info-title {
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2b3b25;
+        }
+        .info-text {
+            margin: 0 0 14px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #3d4f2c;
+        }
+        .info-text strong {
+            font-size: 14px;
+            color: #2a3a24;
+        }
+        .info-list {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13px;
+            color: #3d4f2c;
+            line-height: 1.7;
+        }
+        .info-list li {
+            margin-bottom: 10px;
+        }
+        .side-row {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+        .button-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #4a7c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #2f4f25;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 32px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: #304225;
+            font-size: 13px;
+        }
+        @media (max-width: 1080px) {
+            .hero-row {
+                flex-direction: column;
+            }
+            .hero-left,
+            .hero-right {
+                width: 100%;
+            }
+            .top-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+        }
+        @media (max-width: 760px) {
+            .page {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main {
+                padding: 24px;
+            }
+            .hero-title h1,
+            .hero-title .hero-green,
+            .hero-title .hero-right {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="sidebar">
+            <div class="logo-box">
+                <img src="../Herbal menu/Dashboard/Screenshot 2026-05-12 223105.png" alt="Herbal logo">
+            </div>
+            <a class="menu-item active" href="#">Herbal Medicines</a>
+            <a class="menu-item" href="#">Herbal Drugs</a>
+            <a class="menu-item" href="#">Natural Products from Nature</a>
+            <a class="menu-item" href="#">Fruits with Pharmaceuticals</a>
+            <a class="menu-item" href="#">Flowers with Pharmaceutical</a>
+            <a class="menu-item" href="#">Leaves with Pharmaceutical</a>
+            <a class="menu-item" href="#">Stems with pharmaceutical</a>
+        </div>
+        <div class="main">
+            <div class="top-row">
+                <div></div>
+                <div class="nav-links">
+                    <div class="active">Home</div>
+                </div>
+            </div>
+            <div class="hero-title">
+                <h1>Herbal</h1>
+                <div class="hero-green">Medicine</div>
+                <div class="hero-right">GARLIC</div>
+            </div>
+            <div class="hero-row">
+                <div class="hero-left">
+                    <div class="photo-frame">
+                        <img src="../Herbal menu/Dashboard/Garlic.png" alt="Garlic">
+                    </div>
+                    <div class="caption">
+                        Philippines, Ilocos Region - Batangas, or Central Luzon. Common Culinary and Medicinal Ingredient. Location (e.g., Arayat, Pampanga 15.14, 120.76)
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="info-card">
+                        <div class="info-title">GARLIC</div>
+                        <div class="info-text">
+                            Garlic is a pungent, edible bulb from the plant Allium sativum. Its key medicinal component is allicin, which is formed when cloves are crushed or chopped.
+                        </div>
+                        <div class="info-text"><strong>What it is used for?</strong></div>
+                        <ul class="info-list">
+                            <li>Cardiovascular Health: Clinical studies suggest it can slightly lower blood pressure (hypertension) and improve cholesterol levels (specifically reducing LDL “bad” cholesterol).</li>
+                            <li>Immune Support: Traditionally used to shorten the duration of colds and flu due to its perceived antimicrobial and anti-bacterial properties.</li>
+                            <li>Blood Sugar Regulation: May help stabilize blood sugar levels in people with type 2 diabetes.</li>
+                        </ul>
+                        <div class="info-text"><strong>Where to find it in the Philippines</strong></div>
+                        <ul class="info-list">
+                            <li>Markets: Fresh local or imported garlic is in every wet and dry market and supermarket.</li>
+                            <li>Drugstores/Online: Look for “Aged Garlic Extract” (like Kyolic) or specific brands of garlic oil softgels at Watsons, Mercury Drug, Shopee, Lazada.</li>
+                            <li>Health Stores: Health Options stocks various high-quality garlic supplements.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-title">How to use it properly?</div>
+                        <ul class="info-list">
+                            <li>Preparation: For maximum medicinal benefit, crush or chop raw garlic and let it sit for 10–15 minutes before cooking, or consume it raw.</li>
+                            <li>Dosage (Aged Garlic Extract): Many studies use a standard aged garlic extract dosage of 600mg to 1,200mg daily (e.g., 200mg per meal).</li>
+                            <li>Cooking: Cooking for too long can reduce its medicinal compounds. Add towards the end of cooking for flavor and minimal heat exposure.</li>
+                            <li>The Form Matters: Available as standardized extracts, aged garlic, garlic oil capsules, or raw. Standardized extract is most reliable.</li>
+                        </ul>
+                    </div>
+                    <div class="side-row">
+                        <div class="info-card" style="flex:1;">
+                            <div class="info-title">When you should use it</div>
+                            <ul class="info-list">
+                                <li>Use it if you seek to supplement cardiac health, support a healthy immune response, or manage mild cholesterol issues.</li>
+                                <li>DON’T use it if: You are on blood-thinning medications (it has antiplatelet effects), you have a bleeding disorder, or you have severe digestive issues (may cause irritation).</li>
+                            </ul>
+                        </div>
+                        <a class="button-circle" href="../List/list.html">←</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div>Contact me: 09464626973</div>
+                <div>Email: franco.loic.riodique@gmail.com</div>
+                <div>Facebook: Franco Riodique</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
